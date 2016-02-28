@@ -1,0 +1,92 @@
+export PATH=/Users/biyer/.cabal/bin:/Users/biyer/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+#export SSL_CERT_FILE=/Users/biyer/.ssh/ca-bundle.crt
+##### DEFAULTS #####
+PROMPT_COMMAND='PS1="\[\033[0;33m\][\!]\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\`if [[ `pwd|wc -c|tr -d " "` > 80 ]]; then echo "\\W"; else echo "\\w"; fi\`]\n\h.\u:\$\[\033[0m\] "; echo -ne "\033]0;`hostname -s`:`pwd`\007"'
+
+
+export CLING_EXE=/Users/biyer/bin/cling
+export HISTCONTROL=ignoreboth
+export EDITOR="vim"
+export VISUAL="vim"
+export BITBUCKET_ROOT=/Users/biyer/bitbucket/
+shopt -s histappend
+shopt -s checkwinsize
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+##### CUSTOM STARTS HERE #####
+
+
+### FUNCTIONS
+
+# Easy extract
+extract () {
+  if [ -f $1 ] ; then
+      case $1 in
+          *.tar.bz2)   tar xvjf $1    ;;
+          *.tar.gz)    tar xvzf $1    ;;
+          *.bz2)       bunzip2 $1     ;;
+          *.rar)       rar x $1       ;;
+          *.gz)        gunzip $1      ;;
+          *.tar)       tar xvf $1     ;;
+          *.tbz2)      tar xvjf $1    ;;
+          *.tgz)       tar xvzf $1    ;;
+          *.zip)       unzip $1       ;;
+          *.Z)         uncompress $1  ;;
+          *.7z)        7z x $1        ;;
+          *)           echo "don't know how to extract '$1'..." ;;
+      esac
+  else
+      echo "'$1' is not a valid file!"
+  fi
+}
+
+# Makes directory then moves into it
+function mkcdr {
+    mkdir -p -v $1
+    cd $1
+}
+
+# get most used commands in bash
+top_commands () {
+history|awk '{print $2}'|sort|uniq -c|sort -rn|head -20|awk '!max{max=$1;}{r="";i=s=60*$1/max;while(i-->0)r=r"#";printf "%15s %5d %s %s",$2,$1,r,"\n";}'
+}
+# Creates an archive from given directorylias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/bashscripts/.aliases ]; then
+    source ~/bashscripts/.aliases
+fi
+
+if [ -f ~/.nix-profile/etc/profile.d/nix.sh ]; then
+	source ~/.nix-profile/etc/profile.d/nix.sh
+fi
+
+
+mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
+mktgz() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
+mktbz() { tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
+
+### ALIASES
+
+## Keeping things organized
+alias ls='ls -G'
+alias ll='ls -la'
+alias la='ls -A'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p -v'
+alias df='df -h'
+alias du='du -h -c'
+alias reload='source ~/.profile'
+alias biggest='BLOCKSIZE=1048576; du -x | sort -nr | head -10'
+
+
