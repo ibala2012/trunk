@@ -14,9 +14,9 @@ alias lsd='ls -l | grep "^d"'   #list only directories
 alias emacs='open -a /Applications/Emacs.app $1'
 
 # bitbucket repos shortcut
-alias env_trunk='cd $BITBUCKET_ROOT/environement_trunk/'
-alias haskell_trunk='cd $BITBUCKET_ROOT/learninghaskell/'
-alias python_trunk='cd $BITBUCKET_ROOT/python_trunk/'
+alias env_trunk='cd $BITBUCKET_ROOT/trunk/'
+alias haskell_trunk='cd $BITBUCKET_ROOT/trunk/haskell/'
+alias python_trunk='cd $BITBUCKET_ROOT/trunk/python/'
 alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
 
 #Command substiution
