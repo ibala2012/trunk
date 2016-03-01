@@ -37,7 +37,7 @@ values."
 
      ;; Haskell specific layer settings are given below
      haskell
-     (haskell :variables haskell-enable-hindent-style "chris-done")
+     (haskell :variables haskell-enable-hindent-style "gibiansky")
      
      ;; Emacs lisp layer setting
      emacs-lisp
@@ -51,7 +51,7 @@ values."
      ;; I love themes so added it, personally like spolsky in that pack
      themes-megapack
      ;; markdown
-     ;; org
+     (org :variables org-enable-github-support t)
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
