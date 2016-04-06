@@ -3,8 +3,8 @@ import graph as gr
 
 def main():
     a = gr.Graph.create_graph_from_file('../test_data/abc.txt')
-    print a.breadth_first_search()
-    print a.depth_first_search()
+    print a.bfs_dfs_method("bfs")
+    print a.bfs_dfs_method("dfs")
 
 
 if __name__ == '__main__':

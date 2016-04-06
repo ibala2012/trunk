@@ -23,21 +23,22 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-sort-by-usage t)
      ;; better-defaults
 
      ;; C++ specific layer settings are given below
 
-     c-c++
-     (c-c++ :variables c-c++-enable-clang-support t)
-     (c-c++ :variables c-c++-default-mode-for-headers 'c++-mode)
+     (c-c++ :variables
+            c-c++-enable-clang-support t
+            c-c++-use-c++-mode-for-dot-h t
+            c-c++-default-mode-for-headers 'c++-mode)
 
      ;; Python specific layer settings are given below
      python
 
      ;; Haskell specific layer settings are given below
-     haskell
-     (haskell :variables haskell-enable-hindent-style "gibiansky")
+     (haskell :variables haskell-enable-hindent-style "johan-tibell")
      
      ;; Emacs lisp layer setting
      emacs-lisp
@@ -50,13 +51,18 @@ values."
 
      ;; I love themes so added it, personally like spolsky in that pack
      themes-megapack
-     ;; markdown
+
+     ;; Enabling erc IRC client layer
+     erc
+
+     ;; org markdown
      (org :variables org-enable-github-support t)
+
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     ;; syntax-checking
+     syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -118,7 +124,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spolsky)
+   dotspacemacs-themes '(spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -261,6 +267,14 @@ in `dotspacemacs/user-config'."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (setq tab-width 4)
+  ;; (setq indent-tabs-mode nil)
+  ;; Bind clang-format-region to C-M-tab in all modes:
+  (global-set-key [C-M-tab] 'clang-format-region)
+  ;; Bind clang-format-buffer to tab on the c++-mode only:
+  (add-hook 'c++-mode-hook 'clang-format-bindings)
+  (defun clang-format-bindings ()
+    (define-key c++-mode-map [tab] 'clang-format-buffer))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
