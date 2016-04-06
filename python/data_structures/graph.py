@@ -66,6 +66,7 @@ class Graph(object):
             i = i + 1
             for d in current_node.get_children_names():
                 if d not in visited_nodes and d not in process_nodes:
+                    # Queue is effectively FIFO, so simple append should be enough here
                     process_nodes.append(d)
         return process_sequence
 
@@ -85,6 +86,8 @@ class Graph(object):
             i = i + 1
             for d in current_node.get_children_names():
                 if d not in visited_nodes and d not in process_nodes:
+                    # a shortcut to avoid creating stack, just insert element at the
+                    # position where current node is situated, a simple LIFO
                     process_nodes.insert(i, d)
         return process_sequence
 
