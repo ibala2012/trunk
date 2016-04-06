@@ -3,6 +3,8 @@
 .DS_Store
 .o
 .hi
+/c++/*/bin/*
+/c++/*/build/*
 
  
 
