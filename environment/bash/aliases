@@ -12,7 +12,7 @@ alias l='ls -hF -G'    # quick listing
 alias lsize='ls --sort=size -lhr' # list by size
 alias lsd='ls -l | grep "^d"'   #list only directories
 alias emacs='open -a /Applications/Emacs.app $1'
-
+alias ecterm='/usr/loca/bin/emacs'
 # bitbucket repos shortcut
 alias goenv='cd $BITBUCKET_ROOT/trunk/environment/'
 alias goc++='cd $BITBUCKET_ROOT/trunk/c++/'
@@ -33,7 +33,8 @@ alias path='echo -e ${PATH//:/\\n}'
 alias vi='vim'
 alias du='du -h --max-depth=1'
 
-
+#Application aliases
+alias subl='reattach-to-user-namespace subl'
 
 #Timestamps
 alias stamp='date "+%Y%m%d%a%H%M"'

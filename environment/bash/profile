@@ -1,4 +1,4 @@
-export PATH=/Users/biyer/.cabal/bin:/Users/biyer/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/usr/local/texlive/2015/bin/x86_64-darwin:/Users/biyer/.cabal/bin:/Users/biyer/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 #export SSL_CERT_FILE=/Users/biyer/.ssh/ca-bundle.crt
 ##### DEFAULTS #####
