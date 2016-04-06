@@ -50,12 +50,19 @@ nicerAuthor (Book _ _ author) = author
 
 -- defining a data type with getters and setters in haskell is as given below
 data Customer = Customer {
-  customerID :: CustomerID,
-  customerName :: String,
-  customerAddress :: [String] 
+  customerID      :: CustomerID,
+  customerName    :: String,
+  customerAddress :: [String]
 } deriving (Show)
 
-customer1 = Customer 1 "Balaji Iyer" ["300 North Essex Avenue", "Apt #309A", "Narberth", "PA 19072"]
-customer2 = Customer {
-customerID = 271828 , customerAddress = ["1048576 Disk Drive","Milpitas, CA 95134","USA"] , customerName = "Jane Q. Citizen"
-}
+customer1 =
+    Customer
+        1
+        "Balaji Iyer"
+        ["300 North Essex Avenue", "Apt #309A", "Narberth", "PA 19072"]
+customer2 =
+    Customer
+    { customerID = 271828
+    , customerAddress = ["1048576 Disk Drive", "Milpitas, CA 95134", "USA"]
+    , customerName = "Jane Q. Citizen"
+    }
