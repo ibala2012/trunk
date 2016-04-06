@@ -50,7 +50,7 @@ class Graph(object):
         self.graph_nodes[name] = current_node
         return current_node
 
-    def breadth_first_search(self):
+    def bfs_dfs_method(self, traversal_method="bfs"):
         visited_nodes = {}
         process_nodes = []
         process_sequence = []
@@ -67,28 +67,10 @@ class Graph(object):
             for d in current_node.get_children_names():
                 if d not in visited_nodes and d not in process_nodes:
                     # Queue is effectively FIFO, so simple append should be enough here
-                    process_nodes.append(d)
-        return process_sequence
-
-    def depth_first_search(self):
-        visited_nodes = {}
-        process_nodes = []
-        process_sequence = []
-        current_node = self.root_node
-        process_nodes.append(self.root_node.get_name())
-        i = 0
-        while(i < len(process_nodes)):
-            print process_nodes[i]
-            current_node = self.graph_nodes[process_nodes[i]]
-            if current_node.get_name() not in visited_nodes:
-                visited_nodes[current_node.get_name()] = True
-                process_sequence.append(current_node.get_name())
-            i = i + 1
-            for d in current_node.get_children_names():
-                if d not in visited_nodes and d not in process_nodes:
-                    # a shortcut to avoid creating stack, just insert element at the
-                    # position where current node is situated, a simple LIFO
-                    process_nodes.insert(i, d)
+                    if traversal_method == "bfs":
+                        process_nodes.append(d)
+                    elif traversal_method == "dfs":
+                        process_nodes.insert(i, d)
         return process_sequence
 
     def dijkstra_shortes_path(self):
